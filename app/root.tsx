@@ -3,9 +3,13 @@ import stylesheet from "~/tailwind.css?url";
 import {LinksFunction} from "@remix-run/node";
 import {useState} from "react";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {Toaster} from "~/components/ui/toaster";
 
 export const links: LinksFunction = () => {
-    return [{rel: "stylesheet", href: stylesheet}];
+    return [
+        {rel: "stylesheet", href: stylesheet},
+        {rel: 'stylesheet', href: '/fonts/inter/inter.css'}
+    ];
 }
 
 export function Layout({children}: { children: React.ReactNode }) {
@@ -33,8 +37,9 @@ export function Layout({children}: { children: React.ReactNode }) {
         <body>
         <QueryClientProvider client={queryClient}>
             {children}
-            <ScrollRestoration />
-            <Scripts />
+
+            <ScrollRestoration/>
+            <Scripts/>
         </QueryClientProvider>
         </body>
         </html>
@@ -42,7 +47,12 @@ export function Layout({children}: { children: React.ReactNode }) {
 }
 
 export default function App() {
-    return <Outlet/>;
+    return (
+        <>
+            <Toaster/>
+            <Outlet/>
+        </>
+    );
 }
 
 
