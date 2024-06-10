@@ -1,8 +1,4 @@
-import {
-    QueryFunctionContext,
-    queryOptions,
-    useQuery
-} from '@tanstack/react-query'
+import {QueryFunctionContext, queryOptions, useQuery} from '@tanstack/react-query'
 import axios from 'axios'
 
 type Todo = {
@@ -13,21 +9,21 @@ type Todo = {
 }
 type Todos = ReadonlyArray<Todo>
 
-export function sleep(delay: number) {
+export const sleep = (delay: number) => {
     return new Promise(resolve => setTimeout(resolve, delay))
 }
 
-export async function fetchTodos(signal: AbortSignal): Promise<Todos> {
+export const fetchTodos = async (signal: AbortSignal): Promise<Todos> => {
     const response = await axios.get(
         `https://jsonplaceholder.typicode.com/todos`,
-        { signal }
+        {signal}
     )
     return response.data
 }
 
 const todosQueryOptions = queryOptions({
     queryKey: ['todos'],
-    queryFn: ({ signal }: QueryFunctionContext) => fetchTodos(signal),
+    queryFn: ({signal}: QueryFunctionContext) => fetchTodos(signal),
     placeholderData: [
         {
             userId: 1,
@@ -50,6 +46,6 @@ const todosQueryOptions = queryOptions({
     ]
 })
 
-export function useTodosQuery() {
+export const useTodosQuery = () => {
     return useQuery(todosQueryOptions)
 }
