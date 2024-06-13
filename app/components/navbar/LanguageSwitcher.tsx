@@ -10,7 +10,7 @@ import {
     SelectValue
 } from "~/components/ui/select";
 
-export const Logo = () => {
+export function Logo() {
     const fetcher = useFetcher({key: "change-lang"});
     const {t, i18n} = useTranslation('general');
     const location = useLocation();

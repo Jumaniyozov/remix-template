@@ -1,7 +1,7 @@
-import { createId as cuid } from '@paralleldrive/cuid2'
-import { createCookieSessionStorage, redirect } from '@remix-run/node'
-import { z } from 'zod'
+import {createCookieSessionStorage, redirect} from '@remix-run/node'
 import {combineHeaders} from "~/lib/combineHeaders";
+import {z} from "zod";
+import {createId as cuid} from "@paralleldrive/cuid2";
 
 export const toastKey = 'toast'
 
@@ -42,7 +42,7 @@ export async function createToastHeaders(toastInput: ToastInput) {
     const toast = ToastSchema.parse(toastInput)
     session.flash(toastKey, toast)
     const cookie = await toastSessionStorage.commitSession(session)
-    return new Headers({ 'set-cookie': cookie })
+    return new Headers({'set-cookie': cookie})
 }
 
 export async function getToast(request: Request) {

@@ -1,15 +1,6 @@
 import {createCookieSessionStorage} from "@remix-run/node";
 
-export type User = {
-    user_id: string
-    role: string
-    access_token: string
-    balance: number
-    name: string
-    phone_number: string
-    email: string
-    image_url: string
-}
+
 
 export const USER_SESSION_KEY = "userId";
 const SESSION_SECRET = process.env.SESSION_SECRET ?? "default-secret";

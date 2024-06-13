@@ -13,7 +13,7 @@ type ErrorBoundaryProps = {
     unexpectedErrorHandler?: (error: unknown) => ReactNode | null
 }
 
-export const GeneralErrorBoundary = ({
+export function GeneralErrorBoundary({
                                          defaultStatusHandler = ({error}) => (
                                              <p>
                                                  {error.status} {error.data}
@@ -23,7 +23,7 @@ export const GeneralErrorBoundary = ({
                                          unexpectedErrorHandler = error => (
                                              <p>{getErrorMessage(error)}</p>
                                          )
-                                     }: ErrorBoundaryProps) => {
+                                     }: ErrorBoundaryProps) {
     const error = useRouteError()
     // captureRemixErrorBoundaryError(error)
     const params = useParams()

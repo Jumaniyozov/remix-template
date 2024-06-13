@@ -1,13 +1,12 @@
 import {create} from 'zustand'
+import {User} from "~/types/user";
 
 type UserStore = {
-    name: string,
-    age: number,
+    user: User | null
     setName: (name: string) => void,
 }
 
 export const useUserStore = create<UserStore>()((set) => ({
-    name: 'John Doe',
-    age: 25,
+    user: null,
     setName: (name) => set((state) => ({...state, name}))
 }))

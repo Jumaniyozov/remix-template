@@ -14,13 +14,13 @@ const cookie = createCookie("csrf", {
 
 export const csrf = new CSRF({cookie})
 
-// export async function checkCsrf(formData: FormData, headers: Headers) {
-//     try {
-//         await csrf.validate(formData, headers)
-//     } catch (error) {
-//         if (error instanceof CSRFError) {
-//             throw new Response('CSRF token is invalid', {status: 403})
-//         }
-//         throw error
-//     }
-// }
+export async function checkCsrf(formData: FormData, headers: Headers) {
+    try {
+        await csrf.validate(formData, headers)
+    } catch (error) {
+        if (error instanceof CSRFError) {
+            throw new Response('CSRF token is invalid', {status: 403})
+        }
+        throw error
+    }
+}

@@ -26,9 +26,11 @@ export async function loader() {
     return json({dehydratedState: dehydrate(queryClient)})
 }
 
+
+
 export async function action(props: ActionFunctionArgs) {
     const {request} = props;
-    const formData = await request.formData();
+
 
     return await redirectWithToast('/about', {
         title: 'Scheduled: Catch up',
